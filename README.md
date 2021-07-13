@@ -42,6 +42,12 @@ This provides the following features:
     ```
 
 8. In VS Code, select to run and debug `Run full stack`.
+
+    Part of running the full stack is to generate the following files to support the graphql schema and typescript types:
+    - `./api/graphql.schema.json`
+    - `./api/graphql/generated.ts`
+    - `./src/generated.tsx`: TypeScript source file for the API GraphQL schema
+
 9. Open a browser to `http://localhost:3000` to view the React client.
 
 ### Running the game
@@ -49,3 +55,27 @@ This provides the following features:
 * The game provides a series of trivia questions for a player then displays the player's score. 
 * A player's name doesn't have to be unique. Games across the same player are not tracked.
 * All trivia questions come from `./api/trivia.json` which is a subset of questions available from [Open Trivia Database](https://opentdb.com/).
+
+### Using the in-memory database
+
+If you would rather use the in-memory database, change the `./api/index.ts` file to use the **inMemoryDataSources**:
+
+Change this:
+
+```javascript
+const server = new ApolloServer({
+  schema: addResolversToSchema({ schema, resolvers }),
+  dataSources: cosmosDataSources,
+  context: {},
+});
+```
+
+To this:
+
+```javascript
+const server = new ApolloServer({
+  schema: addResolversToSchema({ schema, resolvers }),
+  dataSources: inMemoryDataSources,
+  context: {},
+});
+```
