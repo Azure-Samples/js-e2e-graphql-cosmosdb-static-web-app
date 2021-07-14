@@ -79,3 +79,14 @@ const server = new ApolloServer({
   context: {},
 });
 ```
+
+## Troubleshooting
+
+|Error|Reason|
+|---|---|
+|Browser-displayed runtime error when you try to create game: `Unexpected token P in JSON at position 0`|Verify the Azure Function API is running on port 7071. If you started the Azure Function API, wait a couple of minutes and try again.|
+|Browser-displayed runtime error when you try to create game:`Error: Response not successful: Received status code 500 - CosmosDB connection string not found`|The Cosmos DB connection string isn't found in the running API.| 
+|Browser-displayed runtime error when you try to create game:`Error: Owner resource does not exist`|The Cosmos DB resource doesn't have the trivia container created.|
+|Browser-displayed runtime error when you try to create game:`Error: Owner resource does not exist`|The Cosmos DB resource doesn't have the `trivia` container (database).|
+|Browser-displayed runtime error when you try to create game:`Error: Resource Not Found`|The Cosmos DB resource doesn't have the `game` collection in the `trivia` container (database).|
+|Browser-displayed runtime error when you play the game: `Error: No game trivia questions found`|The trivia.json file has not been loaded into the `game` collection in the Cosmos DB resource.|

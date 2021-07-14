@@ -5,6 +5,7 @@ import { GetGameDocument, Question, SubmitAnswerDocument } from "../generated";
 import useInterval from "../useInterval";
 
 const PlayGame: React.FC = () => {
+  const [apiError, setApiError] = useState("");
   const { id, playerId } = useParams<{ id: string; playerId: string }>();
   const history = useHistory();
   const [timeRemaining, setTimeRemaining] = useState(30);
@@ -23,8 +24,12 @@ const PlayGame: React.FC = () => {
   >([]);
 
   useEffect(() => {
-    if (!loading && data && data.game) {
-      setQuestions([...data.game.questions]);
+    if (!loading && data && data.game && data.game.questions && data.game.questions.length>0) {
+      setApiError("");
+      setQuestions([...data.game.questions])
+    } else {
+      // @ts-ignore
+      setApiError("No game trivia questions found");
     }
   }, [loading, data]);
 
@@ -68,35 +73,46 @@ const PlayGame: React.FC = () => {
     }
   }, [submitAnswer, id, playerId, question, answer, timeRemaining]);
 
-  if (loading || !question) {
+  if ((loading || !question) && !apiError  ) {
     return <h1>Just getting the game ready, please wait</h1>;
   }
 
   return (
     <div>
       <h1>Play game {id}!</h1>
-      <h2>Time remaining: {timeRemaining}</h2>
-      <h2 dangerouslySetInnerHTML={{ __html: question.question }}></h2>
-      <ul>
-        {question.answers.map((a) => {
-          return (
-            <li key={a}>
-              <label>
-                <input
-                  type="radio"
-                  value={a}
-                  onChange={() => setAnswer(a)}
-                  name="answer"
-                />
-                <span dangerouslySetInnerHTML={{ __html: a }}></span>
-              </label>
-            </li>
-          );
-        })}
-      </ul>
-      <button onClick={() => setTimeRemaining(0)} disabled={mutationLoading}>
-        Submit Answer
-      </button>
+
+      { apiError && 
+        <div>
+          <h2>Error: {apiError}</h2>
+        </div>
+      }
+
+      { (!apiError && question) && 
+        <div>
+        <h2>Time remaining: {timeRemaining}</h2>
+        <h2 dangerouslySetInnerHTML={{ __html: question.question }}></h2>
+        <ul>
+          {question.answers.map((a) => {
+            return (
+              <li key={a}>
+                <label>
+                  <input
+                    type="radio"
+                    value={a}
+                    onChange={() => setAnswer(a)}
+                    name="answer"
+                  />
+                  <span dangerouslySetInnerHTML={{ __html: a }}></span>
+                </label>
+              </li>
+            );
+          })}
+        </ul>
+        <button onClick={() => setTimeRemaining(0)} disabled={mutationLoading}>
+          Submit Answer
+        </button>
+        </div>
+        }
     </div>
   );
 };
