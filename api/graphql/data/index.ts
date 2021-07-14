@@ -8,6 +8,9 @@ import { UserDataSource as InMemoryUserDataSource } from "./inMemory/UserDataSou
 import { GameModel, UserModel } from "./types";
 
 export const cosmosDataSources = () => {
+
+  if(!process.env.CosmosDB || process.env.CosmosDB.length === 0) throw new Error("CosmosDB connection string not found.");
+
   const client = new CosmosClient(process.env.CosmosDB);
   const container = client.database("trivia").container("game");
 

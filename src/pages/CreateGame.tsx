@@ -1,9 +1,11 @@
 import { useMutation } from "@apollo/client";
+import { GraphQLError } from "graphql";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { CreateGameDocument } from "../generated";
 
 const CreateGame: React.FC = () => {
+  const [apiError, setApiError] = useState("");
   const [creating, setCreating] = useState(false);
   const [createGame, { loading, called, data, error }] = useMutation(
     CreateGameDocument
@@ -13,7 +15,13 @@ const CreateGame: React.FC = () => {
 
   useEffect(() => {
     if (creating) {
-      createGame();
+      createGame()
+      .then(() => { console.log(`success`)})
+      .catch((error) => {
+        console.log(error);
+        // @ts-ignore
+        setApiError(JSON.stringify(error));
+      });
     }
   }, [creating, createGame]);
 
@@ -28,9 +36,18 @@ const CreateGame: React.FC = () => {
   return (
     <div>
       <h1>Create a new game!</h1>
-      <button disabled={creating} onClick={() => setCreating(true)}>
-        Start a new game
-      </button>
+
+      { apiError && 
+        <div>
+          <h2>Error: {apiError}</h2>
+        </div>
+      }
+
+      { !apiError && 
+        <button disabled={creating} onClick={() => setCreating(true)}>
+          Start a new game
+        </button>
+    }
     </div>
   );
 };
