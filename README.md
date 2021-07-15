@@ -2,7 +2,7 @@
 
 This sample uses an Azure Static web app (React client and an Azure Function API) to request data with a GraphQL query to the API. The API translates the query to a Cosmos DB SQL query then returns that data to the client. This sample uses the [Apollo GraphQL](https://github.com/apollographql) open source tools.
 
-This sample is based on Aaron Powell's [Type-safe GraphQL apps with TypeScript workshop](https://github.com/aaronpowell/graphql-typescript-workshop.git), hosted on GitHub in a separate repository. You can also read his [blog series on GraphQL](https://www.aaron-powell.com/posts/2020-07-13-graphql-on-azure-part-1-getting-started/).
+This sample is based on Aaron Powell's [Type-safe GraphQL apps with TypeScript workshop](https://github.com/aaronpowell/graphql-typescript-workshop.git), hosted on GitHub in a separate repository. You can also read his [blog series on GraphQL](https://www.aaron-powell.com/posts/2020-07-13-graphql-on-azure-part-1-getting-started/) or watch his YouTube video - [Type-safe GraphQL with TypeScript](https://www.youtube.com/watch?v=G2HUgV30EG4).
 
 ## Features
 
