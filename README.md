@@ -1,3 +1,20 @@
+---
+page_type: sample
+languages:
+- javascript
+- typescript
+- nodejs
+name: "TypeScript E2E GraphQL to Cosmos DB Static web app"
+description: "This sample uses an Azure Static web app (React client and an Azure Function API) to request data with a GraphQL query to the API. The API translates the query to a Cosmos DB SQL query then returns that data to the client. This sample uses the [Apollo GraphQL](https://github.com/apollographql) open source tools."
+products:
+- azure
+- static-web-apps
+- azure-functions
+- azure-portal
+- vs-code
+- azure-cosmos-db
+---
+
 # TypeScript E2E GraphQL to Cosmos DB Static web app
 
 This sample uses an Azure Static web app (React client and an Azure Function API) to request data with a GraphQL query to the API. The API translates the query to a Cosmos DB SQL query then returns that data to the client. This sample uses the [Apollo GraphQL](https://github.com/apollographql) open source tools.

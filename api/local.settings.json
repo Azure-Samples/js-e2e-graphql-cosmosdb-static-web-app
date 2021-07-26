@@ -3,6 +3,7 @@
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsStorage": "",
+    "NODE_TLS_REJECT_UNAUTHORIZED":0,
     "CosmosDB": ""
   }
 }
