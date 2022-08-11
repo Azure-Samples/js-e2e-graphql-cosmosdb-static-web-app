@@ -5,7 +5,8 @@
     "build": "tsc",
     "build:production": "npm run prestart && npm prune --production",
     "watch": "tsc --w",
-    "prestart": "npm run build && func extensions install && npm run gen",
+    "postinstall": "func extensions install",
+    "prestart": "npm run build && npm run gen",
     "start:host": "func start",
     "start": "npm-run-all --parallel start:host watch gen:watch",
     "test": "echo \"No tests yet...\"",
@@ -21,7 +22,7 @@
     "@graphql-codegen/typescript": "^1.20.2",
     "@graphql-codegen/typescript-operations": "^1.17.14",
     "@graphql-codegen/typescript-resolvers": "^1.18.1",
-    "azure-functions-core-tools": "^3.0.3233",
+    "azure-functions-core-tools": "^4.0.4704",
     "npm-run-all": "^4.1.5",
     "typescript": "^4.1.4"
   },
