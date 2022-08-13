@@ -1,9 +1,8 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsStorage": "",
-    "NODE_TLS_REJECT_UNAUTHORIZED":0,
-    "CosmosDB": ""
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "CosmosDB": "YOUR-COSMOS-DB-SQL-API-CONNECTION-STRING"
   }
 }

@@ -38,6 +38,7 @@ type Query {
   game(id: ID!): Game
   games: [Game!]!
   playerResults(gameId: ID!, playerId: ID!): [PlayerResult!]!
+  questionsOrdered: [Question!]!
 }
 
 type Mutation {

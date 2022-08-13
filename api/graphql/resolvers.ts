@@ -10,6 +10,10 @@ const resolvers: Resolvers = {
     games(_, __, { dataSources }) {
       return dataSources.game.getGames();
     },
+    questionsOrdered(_, __, { dataSources }){
+      return dataSources.question.getQuestionsOrdered();
+    },
+
     async playerResults(_, { gameId, playerId }, { dataSources }) {
       const game = await dataSources.game.getGame(gameId);
 

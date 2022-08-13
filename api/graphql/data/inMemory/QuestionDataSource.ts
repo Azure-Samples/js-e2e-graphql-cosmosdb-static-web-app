@@ -17,4 +17,7 @@ export class QuestionDataSource
   getQuestions(): Promise<QuestionModel[]> {
     return Promise.resolve(arrayRandomiser(this.#questions).slice(0, 10));
   }
+  async getQuestionsOrdered(): Promise<QuestionModel[]> {
+    return Promise.resolve(this.#questions);
+  }  
 }

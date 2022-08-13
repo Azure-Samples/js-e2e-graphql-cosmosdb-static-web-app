@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom";
 import { PlayerResultsDocument } from "../generated";
 
 const CompleteGame: React.FC = () => {
-  const { id, playerId } = useParams<{ id: string; playerId: string }>();
+  const { id, playerId } = useParams() as { id: string; playerId: string };
 
   const { loading, data } = useQuery(PlayerResultsDocument, {
     variables: {
       gameId: id,
-      playerId,
+      playerId : playerId,
     },
   });
 

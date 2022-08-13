@@ -48,7 +48,7 @@ export interface IGameDataSource {
   updateGame(game: GameModel): Promise<GameModel>;
   getUserGames(userId: string): Promise<GameModel[]>;
 }
-
+                                                                                 
 export interface IUserDataSource {
   getUser(id: string): Promise<UserModel>;
   createUser(name: string): Promise<UserModel>;
@@ -57,4 +57,5 @@ export interface IUserDataSource {
 export interface IQuestionDataSource {
   getQuestion(id: string): Promise<QuestionModel>;
   getQuestions(): Promise<QuestionModel[]>;
+  getQuestionsOrdered(): Promise<QuestionModel[]>
 }
