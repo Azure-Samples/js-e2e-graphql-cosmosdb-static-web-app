@@ -41,3 +41,15 @@ venv.bak/
 __pycache__/
 *.py[cod]
 *$py.class
+
+#TypeScript Build
+dist
+
+# Azurite
+azurite
+__azurite_*
+__blobstorage__
+__queuestorage__
+
+# MacOS
+.DS_Store

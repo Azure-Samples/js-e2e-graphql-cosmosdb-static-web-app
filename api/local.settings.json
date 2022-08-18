@@ -2,8 +2,10 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": "",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "NODE_TLS_REJECT_UNAUTHORIZED":0,
-    "CosmosDB": ""
+    "CosmosDB": "YOUR_COSMOS_DB_CONNECTION_STRING"
+  },"Host": {
+    "CORS": "*"
   }
 }
