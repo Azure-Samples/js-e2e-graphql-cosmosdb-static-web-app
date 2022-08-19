@@ -1,13 +1,13 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GetGameDocument, Question, SubmitAnswerDocument } from "../generated";
 import useInterval from "../useInterval";
 
 const PlayGame: React.FC = () => {
   const [apiError, setApiError] = useState("");
-  const { id, playerId } = useParams<{ id: string; playerId: string }>();
-  const history = useHistory();
+  const { id, playerId } = useParams() as { id: string; playerId: string };
+  const navigate = useNavigate();
   const [timeRemaining, setTimeRemaining] = useState(30);
   const [answer, setAnswer] = useState("");
   const { loading, data } = useQuery(GetGameDocument, { variables: { id } });
@@ -39,7 +39,7 @@ const PlayGame: React.FC = () => {
         const q = questions.pop();
 
         if (!q) {
-          history.push(`/game/finish/${id}/${playerId}`);
+          navigate(`/game/finish/${id}/${playerId}`);
           return;
         } else {
           setTimeRemaining(30);

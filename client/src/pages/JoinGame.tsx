@@ -1,11 +1,11 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AddPlayerScreenDocument } from "../generated";
 
 const JoinGame: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const history = useHistory();
+  const { id } = useParams() as { id: string };
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [addPlayerToGame, { loading, data }] = useMutation(
     AddPlayerScreenDocument
@@ -13,9 +13,9 @@ const JoinGame: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-      history.push(`/game/play/${id}/${data.addPlayerToGame.id}`);
+      navigate(`/game/play/${id}/${data.addPlayerToGame.id}`);
     }
-  }, [data, id, history]);
+  }, [data, id, navigate]);
 
   return (
     <div>
