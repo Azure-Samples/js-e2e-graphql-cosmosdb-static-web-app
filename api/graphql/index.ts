@@ -7,6 +7,15 @@ import { join } from "path";
 import { cosmosDataSources, inMemoryDataSources } from "./data/index";
 import resolvers from "./resolvers";
 
+let dataSources:any = inMemoryDataSources;
+
+if(process.env.CosmosDB){
+  console.log("using Cosmos DB");
+  dataSources = cosmosDataSources
+} else {
+  console.log("using in-memory DB");
+}
+
 const schema = loadSchemaSync(
   join(__dirname, "..", "..", "graphql", "schema.graphql"),
   {
@@ -16,8 +25,14 @@ const schema = loadSchemaSync(
 
 const server = new ApolloServer({
   schema: addResolversToSchema({ schema, resolvers }),
-  dataSources: cosmosDataSources,
+  dataSources,
   context: {},
 });
 
-export default server.createHandler();
+export default server.createHandler({
+  cors: {
+    origin: ['*', "https://studio.apollographql.com"],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["access-control-allow-credentials", "access-control-allow-origin", "content-type"]
+  },
+});

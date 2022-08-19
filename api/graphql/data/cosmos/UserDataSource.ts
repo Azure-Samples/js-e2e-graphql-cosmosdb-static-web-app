@@ -3,7 +3,7 @@ import { idGenerator } from "../../../utils";
 import { ModelType, IUserDataSource, UserModel } from "../types";
 
 export class UserDataSource
-  extends CosmosDataSource<UserModel>
+  extends CosmosDataSource<UserModel, any>
   implements IUserDataSource {
   async getUser(id: string) {
     return await this.findOneById(id);

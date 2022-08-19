@@ -1,6 +1,6 @@
 overwrite: true
 schema: "./graphql/schema.graphql"
-documents: "../src/operations/*.graphql"
+documents: "../client/src/operations/*.graphql"
 generates:
   graphql/generated.ts:
     config:
@@ -16,7 +16,7 @@ generates:
     plugins:
       - "introspection"
 
-  ../src/generated.tsx:
+  ../client/src/generated.tsx:
     config:
       withHooks: true
       withHOC: false

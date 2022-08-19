@@ -4,7 +4,7 @@ import { arrayRandomiser } from "../../../utils";
 import { ModelType, IQuestionDataSource, QuestionModel } from "../types";
 
 export class QuestionDataSource
-  extends CosmosDataSource<QuestionModel>
+  extends CosmosDataSource<QuestionModel, any>
   implements IQuestionDataSource {
   async getQuestions(): Promise<QuestionModel[]> {
     const questions = await this.findManyByQuery({

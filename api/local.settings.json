@@ -4,8 +4,9 @@
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "NODE_TLS_REJECT_UNAUTHORIZED":0,
-    "CosmosDB": "YOUR_COSMOS_DB_CONNECTION_STRING"
-  },"Host": {
+    "CosmosDB": ""
+  },
+  "Host": {
     "CORS": "*"
   }
 }
